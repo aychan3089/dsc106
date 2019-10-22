@@ -1,6 +1,6 @@
 
 // Create Chart for all Sales per Month 
-Highcharts.chart('container6', {
+Highcharts.chart('container1', {
     chart: {
         type: 'line',
     }, 
@@ -28,11 +28,12 @@ Highcharts.chart('container6', {
     }], 
 });
 
-
+salesColored = salesPerMonthDiff.slice(0)
+salesColored[33] = {y: salesColored[33], color:'#BF0B23', dataLabels: {enabled: true}}
 // Diff chart
-Highcharts.chart('container7', {
+Highcharts.chart('container2', {
     chart: {
-        type: 'line',
+        type: 'column',
     }, 
     title: {
         text: 'Diff in Sales per Month'
@@ -53,9 +54,10 @@ Highcharts.chart('container7', {
     }, 
 
     series: [{
-        name: 'Total Sales',
-        data: salesPerMonthDiff
+        name: 'Difference in Sales',
+        data: salesColored
     }, {
+        name: 'Zeros',
         data: zeroes,
         color: "#000000",
         dashStyle: 'LongDash',
@@ -64,10 +66,12 @@ Highcharts.chart('container7', {
     }], 
 });
 
+zScoresColored = zScoresDiff.slice(0)
+zScoresColored[33] = {y: zScoresColored[33], color:'#BF0B23', dataLabels: {enabled: true}}
 // zScore Diff chart
-Highcharts.chart('container8', {
+Highcharts.chart('container3', {
     chart: {
-        type: 'line',
+        type: 'column',
     }, 
     title: {
         text: 'zScores of Diff in Sales per Month'
@@ -88,9 +92,10 @@ Highcharts.chart('container8', {
     }, 
 
     series: [{
-        name: 'Total Sales',
-        data: zScoresDiff
+        name: 'Difference in Sales',
+        data: zScoresColored
     }, {
+        name: 'Zeros',
         data: zeroes,
         color: "#000000",
         dashStyle: 'LongDash',
@@ -100,119 +105,13 @@ Highcharts.chart('container8', {
 });
 
 
-// Create Chart for all North East Sales
-Highcharts.chart('container1', {
-    chart: {
-        type: 'line',
-    }, 
-    title: {
-        text: 'Monthly Sales In North East'
-    }, 
-    subtitle: {
-        text: 'Jananuary 2016 to September 2019'
-    }, 
-    xAxis: {
-        title: {
-            text: 'Months - Year (20XX)'
-        },
-        categories: months
-    }, 
-    yAxis: {
-        title: {
-            text: '$ of Sales in USD'
-        }
-    }, 
-
-    series: [{
-        name: 'Hamburgers',
-        data: hmNE
-    }, {
-        name: 'Chicken fillets',
-        data: cfNE
-    }, {
-        name: 'Fish fillets',
-        data: ffNE
-    }], 
-});
-
-
-// Chart for all North West Sales 
-Highcharts.chart('container2', {
-    chart: {
-        type: 'line',
-    }, 
-    title: {
-        text: 'Monthly Sales In North West'
-    }, 
-    subtitle: {
-        text: 'Jananuary 2016 to September 2019'
-    }, 
-    xAxis: {
-        title: {
-            text: 'Months - Year (20XX)'
-        },
-        categories: months
-    }, 
-    yAxis: {
-        title: {
-            text: '$ of Sales in USD'
-        }
-    }, 
-
-    series: [{
-        name: 'Hamburgers',
-        data: hmNW
-    }, {
-        name: 'Chicken fillets',
-        data: cfNW
-    }, {
-        name: 'Fish fillets',
-        data: ffNW
-    }], 
-});
-
-// Create Chart for all South East Sales
-Highcharts.chart('container3', {
-    chart: {
-        type: 'line',
-    }, 
-    title: {
-        text: 'Monthly Sales In South East'
-    }, 
-    subtitle: {
-        text: 'Jananuary 2016 to September 2019'
-    }, 
-    xAxis: {
-        title: {
-            text: 'Months - Year (20XX)'
-        },
-        categories: months
-    }, 
-    yAxis: {
-        title: {
-            text: '$ of Sales in USD'
-        }
-    }, 
-
-    series: [{
-        name: 'Hamburgers',
-        data: hmSE
-    }, {
-        name: 'Chicken fillets',
-        data: cfSE
-    }, {
-        name: 'Fish fillets',
-        data: ffSE
-    }], 
-});
-
-// Create Chart for all South West Sales
+// Create Chart for Regional Sales 
 Highcharts.chart('container4', {
     chart: {
         type: 'line',
     }, 
     title: {
-        text: 'Monthly Sales In South West'
+        text: 'Regional Sales per Month'
     }, 
     subtitle: {
         text: 'Jananuary 2016 to September 2019'
@@ -230,33 +129,36 @@ Highcharts.chart('container4', {
     }, 
 
     series: [{
-        name: 'Hamburgers',
-        data: hmSW
+        name: 'North East sales',
+        data: neSales
     }, {
-        name: 'Chicken fillets',
-        data: cfSW
+        name: 'North West sales',
+        data: nwSales
     }, {
-        name: 'Fish fillets',
-        data: ffSW
+        name: 'South East sales',
+        data: seSales
+    }, {
+        name: 'South West sales',
+        data: swSales
     }], 
 });
 
-// Create Chart for all Central Sales
+// Item Sales per Region
 Highcharts.chart('container5', {
     chart: {
-        type: 'line',
+        type: 'column',
     }, 
     title: {
-        text: 'Monthly Sales In Central'
+        text: 'Item Sales per Region'
     }, 
     subtitle: {
         text: 'Jananuary 2016 to September 2019'
     }, 
     xAxis: {
         title: {
-            text: 'Months - Year (20XX)'
+            text: 'Items'
         },
-        categories: months
+        categories: foods
     }, 
     yAxis: {
         title: {
@@ -265,13 +167,69 @@ Highcharts.chart('container5', {
     }, 
 
     series: [{
-        name: 'Hamburgers',
-        data: hmC
+        name: 'North East',
+        data: [65362334, 27233220, 16345942]
     }, {
-        name: 'Chicken fillets',
-        data: cfC
+        name: 'North West',
+        data: [63572000, 26341429, 15821178]
     }, {
-        name: 'Fish fillets',
-        data: ffC
+        name: 'South East',
+        data: [62328614, 26039450, 15614539]
+    }, {
+        name: 'South West',
+        data: [64421707, 26815953, 16104137]
     }], 
+});
+
+// Sales per day 
+
+Highcharts.chart('container6', {
+    chart: {
+        type: 'pie',
+    }, 
+    title: {
+        text: 'Total Sales per Day'
+    }, 
+    subtitle: {
+        text: 'Jananuary 2016'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+
+    series: [{
+        name: 'Days',
+        data: [{
+            name: days[0],
+            y: salesPerDay[0]
+        }, {
+            name: days[1],
+            y: salesPerDay[1]
+        }, {
+            name: days[2],
+            y: salesPerDay[2]
+        }, {
+            name: days[3],
+            y: salesPerDay[3]
+        }, {
+            name: days[4],
+            y: salesPerDay[4]
+        }, {
+            name: days[5],
+            y: salesPerDay[5]
+        }, {
+            name: days[6],
+            y: salesPerDay[6]
+        }, ]
+    }] 
 });
